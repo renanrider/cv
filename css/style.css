@@ -1,6 +1,7 @@
 html {
 	background-color: #262626;
 }
+
 h1,
 h2,
 h3,
@@ -9,6 +10,11 @@ span,
 a {
 	color: #fff;
 }
+
+h1 {
+	margin: 
+}
+
 i { 
 	color: #2ae8b7; 
 	-webkit-transition: 0.2s ease;
@@ -17,53 +23,24 @@ i {
 	min-width: 20px;
 
 }
+
 .about .fa {
 	margin-right: 10px;
 
 }
+
 i:hover {
 	color: #05a362;
 	-webkit-transition: 0.2s ease;
 	-o-transition: 0.2s ease;
 	transition: 0.2s ease;
 }
+
 #wrap {
 	margin-top: 50px;
 }
-header img {
-	max-width: 50%;
-	margin: 0 auto;
-	display: block;
-}
-/* entire container, keeps perspective */
-.flip-container { perspective: 1000px; }
-/* flip the pane when hovered */
-.flip-container:hover .flipper, .flip-container.hover .flipper { transform: rotateY(180deg); }
-.flip-container, .front, .back { height: 150px; }
-/* flip speed goes here */
-.flipper {
-	transition: 0.6s;
-	transform-style: preserve-3d;
-	position: relative;
-}
 
-/* hide back of pane during swap */
-.front, .back {
-	backface-visibility: hidden;
-	position: absolute;
-	top: 0;
-	left: 0;
-}
 
-/* front pane, placed above back */
-.front {
-	z-index: 2;
-	/* for firefox 31 */
-	transform: rotateY(0deg);
-}
-
-/* back, initially hidden pane */
-.back {	transform: rotateY(180deg); }
 header h1 {	font-size: 2em; }
 header h2 {
 	font-size: 2em;
