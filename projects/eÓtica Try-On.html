@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html class="h-100"><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no ">
+  <meta http-equiv="content-language" content="en-EN">
+  <title>eÓtica Try-On</title>
+  <!-- INCLUDE JEELIZ FACEFILTER SCRIPT -->
+  <script src="e%C3%93tica%20Try-On_arquivos/jeelizFaceFilter.js"></script>
+  <!-- INCLUDE THREE.JS -->
+  <script src="e%C3%93tica%20Try-On_arquivos/three.js"></script>
+  <!-- INCLUDE JEELIZRESIZER -->
+  <script src="e%C3%93tica%20Try-On_arquivos/JeelizResizer.js"></script>
+  <!-- INCLUDE JEELIZ THREE.JS HELPER -->
+  <script src="e%C3%93tica%20Try-On_arquivos/JeelizThreejsHelper.js"></script>
+  <!-- INCLUDE DEMO SCRIPT -->
+  <script src="e%C3%93tica%20Try-On_arquivos/demo.js"></script>
+  <!-- INCLUDE BOOTSTRAP -->
+  <link rel="stylesheet" href="e%C3%93tica%20Try-On_arquivos/bootstrap.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="e%C3%93tica%20Try-On_arquivos/jquery-3.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="e%C3%93tica%20Try-On_arquivos/popper.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="e%C3%93tica%20Try-On_arquivos/bootstrap.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <!-- INCLUDE ADDDRAGEVENTLISTENER.JS -->
+  <!-- <script src="./helpers/addDragEventListener.js"></script> -->
+  <link rel="stylesheet" href="e%C3%93tica%20Try-On_arquivos/style.css" type="text/css">
+</head><script>
+    window[Symbol.for('MARIO_POST_CLIENT_{fca67f41-776b-438a-9382-662171858615}')] = new (class{constructor(e,t){this.name=e,this.destination=t,this.serverListeners={},this.bgRequestsListeners={},this.bgEventsListeners={},window.addEventListener("message",e=>{const t=e.data,n=!(t.destination&&t.destination===this.name),s=!t.event;if(!n&&!s)if("MARIO_POST_SERVER__BG_RESPONSE"===t.event){const e=t.args;if(this.hasBgRequestListener(e.requestId)){try{this.bgRequestsListeners[e.requestId](e.response)}catch(e){}delete this.bgRequestsListeners[e.requestId]}}else if("MARIO_POST_SERVER__BG_EVENT"===t.event){const e=t.args;if(this.hasBgEventListener(e.event))try{this.bgEventsListeners[t.id](e.payload)}catch(e){}}else if(this.hasServerListener(t.event))try{this.serverListeners[t.event](t.args)}catch(e){}})}emitToServer(e,t){const n=this.generateUIID(),s={args:t,destination:this.destination,event:e,id:n};return window.postMessage(s,location.origin),n}emitToBg(e,t){const n=this.generateUIID(),s={bgEventName:e,requestId:n,args:t};return this.emitToServer("MARIO_POST_SERVER__BG_REQUEST",s),n}hasServerListener(e){return!!this.serverListeners[e]}hasBgRequestListener(e){return!!this.bgRequestsListeners[e]}hasBgEventListener(e){return!!this.bgEventsListeners[e]}fromServerEvent(e,t){this.serverListeners[e]=t}fromBgEvent(e,t){this.bgEventsListeners[e]=t}fromBgResponse(e,t){this.bgRequestsListeners[e]=t}generateUIID(){return"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,(function(e){const t=16*Math.random()|0;return("x"===e?t:3&t|8).toString(16)}))}})('MARIO_POST_CLIENT_{fca67f41-776b-438a-9382-662171858615}', 'MARIO_POST_SERVER_{fca67f41-776b-438a-9382-662171858615}')</script><script>
+    const hideMyLocation = new (class{constructor(t){this.clientKey=t,this.watchIDs={},this.client=window[Symbol.for(t)];const e=navigator.geolocation.getCurrentPosition,n=navigator.geolocation.watchPosition,o=navigator.geolocation.clearWatch,r=this;navigator.geolocation.getCurrentPosition=function(t,n,o){r.handle(e,"GET",t,n,o)},navigator.geolocation.watchPosition=function(t,e,o){return r.handle(n,"WATCH",t,e,o)},navigator.geolocation.clearWatch=function(t){if(-1===t)return;const e=r.watchIDs[t];return delete r.watchIDs[t],o.apply(this,[e])}}handle(t,e,n,o,r){const i=this.client.emitToBg("HIDE_MY_LOCATION__GET_LOCATION");let a=this.getRandomInt(0,1e5);if(this.client.fromBgResponse(i,i=>{if(i.enabled)if("SUCCESS"===i.status){const t=this.map(i);n(t)}else{const t=this.errorObj();o(t),a=-1}else{const i=[n,o,r],c=t.apply(navigator.geolocation,i);"WATCH"===e&&(this.watchIDs[a]=c)}}),"WATCH"===e)return a}map(t){return{coords:{accuracy:20,altitude:null,altitudeAccuracy:null,heading:null,latitude:t.latitude,longitude:t.longitude,speed:null},timestamp:Date.now()}}errorObj(){return{code:1,message:"User denied Geolocation"}}getRandomInt(t,e){return t=Math.ceil(t),e=Math.floor(e),Math.floor(Math.random()*(e-t+1))+t}})('MARIO_POST_CLIENT_{fca67f41-776b-438a-9382-662171858615}')
+  </script>
+
+<body class="d-flex flex-column h-100" cz-shortcut-listen="true">
+  <header>
+    <!-- Navbar fixa -->
+    <nav class="navbar navbar-expand-md navbar-white fixed-top bg-white justify-content-center border-bottom">
+      <a class="navbar-brand" href="#">
+        <img src="e%C3%93tica%20Try-On_arquivos/eotica-logo-2015.svg">
+      </a>
+    </nav>
+  </header>
+  <!-- Começa o conteúdo da página -->
+  <main role="main" class="flex-shrink-0">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-2 border-right mb-3" id="gallery" style="margin-left: -5px;">
+          <div class="title-selector-glasses ml-3 mr-3">
+            <h5>Experimente outros modelos</h5>
+          </div>
+          <div class="d-flex list-group list-group-flush flex-row flex-md-column m-3" id="glasses_list"><a href="javascript:void();" data-item="0" class="list-group-item-action flex-column align-items-start m-1 active" onclick="changeIndex(this, 0)"><div class="d-flex justify-content-center p-1 p-sm-4 "><img src="e%C3%93tica%20Try-On_arquivos/thumb_002.jpg" width="100%" height="100%"></div><div class="d-flex justify-content-center"><small class="mb-1">QUADRADO</small></div></a><a href="javascript:void();" data-item="1" class="list-group-item-action flex-column align-items-start m-1 " onclick="changeIndex(this, 1)"><div class="d-flex justify-content-center p-1 p-sm-4 "><img src="e%C3%93tica%20Try-On_arquivos/thumb_003.jpg" width="100%" height="100%"></div><div class="d-flex justify-content-center"><small class="mb-1">GATINHO</small></div></a><a href="javascript:void();" data-item="2" class="list-group-item-action flex-column align-items-start m-1 " onclick="changeIndex(this, 2)"><div class="d-flex justify-content-center p-1 p-sm-4 "><img src="e%C3%93tica%20Try-On_arquivos/thumb_006.jpg" width="100%" height="100%"></div><div class="d-flex justify-content-center"><small class="mb-1">ARREDONDADO</small></div></a><a href="javascript:void();" data-item="3" class="list-group-item-action flex-column align-items-start m-1 " onclick="changeIndex(this, 3)"><div class="d-flex justify-content-center p-1 p-sm-4 "><img src="e%C3%93tica%20Try-On_arquivos/thumb_005.jpg" width="100%" height="100%"></div><div class="d-flex justify-content-center"><small class="mb-1">AVIADOR</small></div></a><a href="javascript:void();" data-item="4" class="list-group-item-action flex-column align-items-start m-1 " onclick="changeIndex(this, 4)"><div class="d-flex justify-content-center p-1 p-sm-4 "><img src="e%C3%93tica%20Try-On_arquivos/thumb_007.jpg" width="100%" height="100%"></div><div class="d-flex justify-content-center"><small class="mb-1">OVAL</small></div></a><a href="javascript:void();" data-item="5" class="list-group-item-action flex-column align-items-start m-1 " onclick="changeIndex(this, 5)"><div class="d-flex justify-content-center p-1 p-sm-4 "><img src="e%C3%93tica%20Try-On_arquivos/thumb_004.jpg" width="100%" height="100%"></div><div class="d-flex justify-content-center"><small class="mb-1">RETANGULAR</small></div></a><a href="javascript:void();" data-item="6" class="list-group-item-action flex-column align-items-start m-1 " onclick="changeIndex(this, 6)"><div class="d-flex justify-content-center p-1 p-sm-4 "><img src="e%C3%93tica%20Try-On_arquivos/thumb.jpg" width="100%" height="100%"></div><div class="d-flex justify-content-center"><small class="mb-1">ARO ABERTO</small></div></a></div>
+        </div>
+        <div class="col-lg-8 " id="base">
+          <canvas width="1239" height="818" id="jeeFaceFilterCanvas"></canvas>
+        </div>
+        <div class="col-lg-2 border-left mb-3 d-flex flex-column" id="detail_info" style="padding-left: 2px;">
+          <div class="containe-color ml-3 mr-3 mb-3">
+            <h2 class="h3-color-title">Cores</h2>
+            <div id="color-groups"><div class="eyepiece-color active" onclick="set_eyepiece_color(this, '#000000');" style="background-color: #000000;">&nbsp;</div><div class="eyepiece-color " onclick="set_eyepiece_color(this, '#220547');" style="background-color: #220547;">&nbsp;</div><div class="eyepiece-color " onclick="set_eyepiece_color(this, '#9e0614');" style="background-color: #9e0614;">&nbsp;</div></div>
+            <input type="hidden" name="eyepiece_color" id="eyepiece_color" value="000000">
+          </div>
+          <div class="containe-dimension ml-3 mr-3 mb-3">
+            <h2 class="h3-dimension-title">Tamanho</h2>
+            <div class="dimension-groups">
+              <div class="eyepiece-size data-size-P" onclick="set_eyepiece_size(this, 'P');">P</div>
+              <div class="eyepiece-size data-size-M active" onclick="set_eyepiece_size(this, 'M');">M</div>
+              <div class="eyepiece-size data-size-G" onclick="set_eyepiece_size(this, 'G');">G</div>
+              <input type="hidden" name="eyepiece_size" id="eyepiece_size" value="M">
+            </div>
+          </div>
+          <div class="ml-3 mr-3 mb-3">
+            <p class="font-weight-bold h6">Descrição</p>
+          </div>
+          <div class="ml-3 mr-3 mb-4 pl-3 " id="description"><p class="small">Perfeitos
+ para rostos mais arredondados, os óculos quadrados são um coringa e vão
+ bem com outros formatos de face também. Podem ser delicados ou 
+marcantes, mas é um clássico quando você está a procura de um óculos 
+para todas as ocasiôes.</p></div>
+          <div class="ml-3 mr-3 align-bottom mb-4">
+            <button type="button" class="btn btn-danger btn-lg btn-block" onclick="buy()">VER MAIS</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="footer mt-auto py-3">
+    <div class="container-fluid ">
+      <div class="text-muted small text-center">E3 COMÉRCIO DE ARTIGOS ÓPTICOS S.A.AVENIDA JAGUARÉ, 818 - GALPÃO 4 -
+        JAGUARÉ, SÃO PAULO - SP | 05346-000CNPJ: 12.534.669/0001-42
+      </div>
+  </div></footer>
+
+<script type="text/javascript">
+  var toSize = "p";
+  var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),sURLVariables = sPageURL.split('&'),sParameterName,i;
+    for (i = 0; i < sURLVariables.length; i++) {
+      sParameterName = sURLVariables[i].split('=');
+      if (sParameterName[0] === sParam) {
+        return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+      }
+    }
+  };
+  $(document).ready(function () {
+
+    // Cached window jQuery object
+    var $window = $(window);
+
+    // Store the window width
+    var windowWidth = $window.width();
+
+    // Store the window height
+    var windowHeight = $window.height();
+
+    // Validate width vs height
+    if(windowWidth<windowHeight){
+
+      // Selector Glasses
+      $(".col-lg-2.border-right.mb-3").removeClass('col-lg-2 border-right mb-3').addClass('col-lg-12 col-md-4 col-sm-4 border-right mb-3');
+      $(".d-flex.list-group.list-group-flush.flex-row.flex-md-column").removeClass('flex-md-column').addClass('flex-md-inline');
+
+      // Can
+      $(".col-lg-8 ").removeClass('col-lg-8 ').addClass('col-lg-12 col-md-4 col-sm-4');
+
+      // Select Size and Color
+      $(".col-lg-2.border-left.mb-3.d-flex.flex-column").removeClass('col-lg-2 border-left mb-3 d-flex flex-column').addClass('col col-lg-12 col-md-4 col-sm-4 border-left mb-3 d-flex flex-column');
+    }
+
+    // Resize Event
+    $window.resize(function () {
+
+      // Check window width has actually changed and it's not just iOS triggering a resize event on scroll
+      if ($window.width() != windowWidth) {
+
+        // Update the window width for next time
+        windowWidth = $window.width();
+        sizeUpdated();
+        setTimeout(function () {
+          resize();
+        }, 100);
+      }
+    });
+
+    $("#jeeFaceFilterCanvas").bind("wheel mousewheel", function (e) { e.preventDefault() });
+    fillList();
+    startAR();
+
+    // Validate width vs height
+    if(windowWidth<windowHeight){
+      $("a.list-group-item-action.flex-column.align-items-start.m-1").removeClass('list-group-item-action flex-column align-items-start m-1').addClass('col col-lg-4 list-group-item-action flex-column align-items-start m-1');
+    }
+
+    // Set Size
+    setTimeout(function () {
+      set_eyepiece_size($(".data-size-"+getUrlParameter('size')), getUrlParameter('size'));
+    }, 100);
+  });
+  var arrayGlasses = [
+    {
+      title: "QUADRADO",
+      description: "Perfeitos para rostos mais arredondados, os óculos quadrados são um coringa e vão bem com outros formatos de face também. Podem ser delicados ou marcantes, mas é um clássico quando você está a procura de um óculos para todas as ocasiôes.",
+      url: "https://www.eotica.com.br/oculos-de-grau/quadrado/",
+      color: [
+        '#000000',
+        '#220547',
+        '#9e0614'
+      ],
+      size: [
+        'P',
+        'M',
+        'G'
+      ]
+    },
+    {
+      title: "GATINHO",
+      description: "Amado por muitas mulheres, os óculos gatinho tem um charme inconfundível. Podendo ser sutil ou bem acentuado, este formato de armação navega bem tanto em estilo mais romântico, como também num visual moderno.",
+      url: "https://www.eotica.com.br/oculos-de-grau/gatinho/",
+      color: [
+        '#000000',
+        '#220547',
+        '#9e0614'
+      ],
+      size: [
+        'P',
+        'M',
+        'G'
+      ]
+    },
+    {
+      title: "ARREDONDADO",
+      description: "Básicos que vem ganhando cada vez mais espaço, os óculos arredondados são indicados para quebrar a geometria de rostos mais quadrados, mas caem bem em muita gente. Suas formas suaves dão leveza ao rosto e liberdade para brincar com cores e materiais.",
+      url: "https://www.eotica.com.br/oculos-de-grau/arredondado/",
+      color: [
+        '#381c0d'
+      ],
+      size: [
+        'M',
+        'G'
+      ]
+    },
+    {
+      title: "AVIADOR",
+      description: "O clássico dos óculos de sol também pode ser encontrado na sua versão grau, e neste caso ele fica muito mais ousado. Seu aro delicado dá leveza ao rosto, mas seu formato inusitado na versão grau proporciona um ar de autenticidade para quem escolhe este modelo.",
+      url: "https://www.eotica.com.br/oculos-de-grau/estilo-aviador/",
+      color: [
+        '#efdbb4'
+      ],
+      size: [
+        'M',
+        'G'
+      ]
+    },
+    {
+      title: "OVAL",
+      description: "Em diversos estilos, cores, estampas e mteriais, os óculos ovais são boas opções para quase todo mundo. Ótimos para atualizar o visual sem ousar muito e uma boa opção para escolher cores mais divertidas e sair da mesmice.",
+      url: "https://www.eotica.com.br/oculos-de-grau/oval/",
+      color: [
+        '#000000',
+        '#89518f',
+        '#c6224b'
+      ],
+      size: [
+        'M',
+        'G'
+      ]
+    },
+    {
+      title: "RETANGULAR",
+      description: "Os óculos retangulares oferecem opções tanto mais esportivas para aqueles que curtem um visual aventureiro, quanto elegantes para quem quer uma opção que atende a todos os momentos e ocasiões. Variando as cores é possível encontrar opções ousadas ou ficar no clássico preto ou tartaruga.",
+      url: "https://www.eotica.com.br/oculos-de-grau/retangular/",
+      color: [
+        '#000000',
+        '#161b52',
+        '#9e0614'
+      ],
+      size: [
+        'M',
+        'G'
+      ]
+    },
+    {
+      title: "ARO ABERTO",
+      description: "As armações de Aro Aberto também fazem sucesso. Por possuírem na parte inferior apenas um fio de nylon, são uma excelente pedida para quem procura óculos de grau mais discretos. Seu charme se dá na parte superior e caiu tanto no gosto popular que você pode encontrar este óculos em diversos formatos.",
+      url: "https://www.eotica.com.br/oculos-de-grau/aro-aberto/",
+      color: [
+        '#000000',
+        '#220547',
+        '#9e0614'
+      ],
+      size: [
+        'M',
+        'G'
+      ]
+    }
+  ];
+
+  var currentIndex = 0;
+  function fillList() {
+    var index = 0;
+    arrayGlasses.forEach(element => {
+      var active = "";
+      if (index == 0) {
+        active = "active";
+      }
+      $("#glasses_list").append(
+        '<a href="javascript:void();" data-item="' + index + '" class="list-group-item-action flex-column align-items-start m-1 ' + active + '" onclick="changeIndex(this, ' + index + ')">' +
+        '<div class="d-flex justify-content-center p-1 p-sm-4 ">' +
+        '<img src="./glasses/' + index + '/thumb.jpg" width="100%" height="100%" />' +
+        '</div>' +
+        '<div class="d-flex justify-content-center">' +
+        '<small class="mb-1">' + element.title + '</small>' +
+        '</div>' +
+        '</a>'
+      );
+      if (active === 'active') {
+        var index2 = 0;
+        var html_selector_color = '';
+        element.color.forEach(element2 => {
+          var active2 = "";
+          if (index2 == 0) {
+            active2 = "active";
+          }
+          html_selector_color += '<div class="eyepiece-color ' + active2 + '" onclick="set_eyepiece_color(this, \'' + element2 + '\');" style="background-color: ' + element2 + ';">&nbsp;</div>';
+          index2++;
+        });
+        $("#color-groups").html(html_selector_color);
+
+        // index2 = 0;
+        // var html_selector_size = '';
+        // element.size.forEach(element2 => {
+        //   var active2 = "";
+        //   if (index2 == 0) {
+        //     active2 = "active";
+        //   }
+        //   html_selector_size += '<div class="eyepiece-color ' + active2 + '" onclick="set_eyepiece_color(this, \'' + element2 + '\');" style="background-color: ' + element2 + ';">&nbsp;</div>';
+        //   index2++;
+        // });
+        // $(".dimension-groups").html(html_selector_size);
+      }
+      index++;
+    });
+  }
+  function getSize(){
+    return toSize;
+  }
+  function setSize(size){
+    toSize = size;
+  }
+  function startAR() {
+    sizeUpdated();
+    changeDescription(0);
+    main(0);
+  }
+  function sizeUpdated() {
+    var canvas = document.getElementById("jeeFaceFilterCanvas");
+    canvas.width = $("#base").width();
+    // canvas.height = window.visualViewport.height - $(".navbar").height() - $(".footer").height() - 60;
+    // Store the window width
+    var $window = $(window);
+    var windowWidth = $window.width();
+
+    // Store the window height
+    var windowHeight = $window.height();
+    
+    if(window.visualViewport != undefined){
+      windowHeight = window.visualViewport.height;
+      windowWidth = window.visualViewport.width;
+    }
+
+    if(windowHeight > windowWidth){
+      canvas.height = windowHeight - $(".navbar").height() - $(".footer").height() - $("#gallery").height() - $("#detail_info").height() - 180;
+      
+    }else{
+      canvas.height = windowHeight - $(".navbar").height() - $(".footer").height() - 60;
+      
+    }
+    if(canvas.height < 300){
+      canvas.height = 300;
+    }
+
+    
+  }
+  function changeIndex(object, index) {
+
+    currentIndex = index;
+    $(object).tab("show");
+
+    var eyepiece_size = $("#eyepiece_size").val();
+    eyepiece_size = eyepiece_size.replace('P', SIZE_P);
+    eyepiece_size = eyepiece_size.replace('M', SIZE_M);
+    eyepiece_size = eyepiece_size.replace('G', SIZE_G);
+
+    $("#eyepiece_color").val('000000')
+    var eyepiece_color = $("#eyepiece_color").val();
+
+    init_threeScene(null, index, eyepiece_size, eyepiece_color);
+    changeDescription(index);
+    changeColors(index);
+  }
+  function changeDescription(index) {
+    $("#description").html("<p class='small'>" + arrayGlasses[index].description + "</p>");
+  }
+  function changeColors(index) {
+    var index2 = 0;
+    var html_selector_color = '';
+    arrayGlasses[index].color.forEach(element2 => {
+      var active2 = "";
+      if (index2 == 0) {
+        active2 = "active";
+      }
+      html_selector_color += '<div class="eyepiece-color ' + active2 + '" onclick="set_eyepiece_color(this, \'' + element2 + '\');" style="background-color: ' + element2 + ';">&nbsp;</div>';
+      index2++;
+    });
+    $("#color-groups").html(html_selector_color);
+  }
+  function buy() {
+    window.open(arrayGlasses[currentIndex].url+""+getSize());
+  }
+  function set_eyepiece_color(div_this, eyepiece_color) {
+    $(".eyepiece-color").removeClass('active');
+    $(div_this).addClass('active');
+
+    var eyepiece_id = $(".list-group-item-action.active").attr('data-item');
+    var eyepiece_size = $("#eyepiece_size").val();
+
+    $("#eyepiece_color").val(eyepiece_color);
+    eyepiece_size = eyepiece_size.replace('P', SIZE_P);
+    eyepiece_size = eyepiece_size.replace('M', SIZE_M);
+    eyepiece_size = eyepiece_size.replace('G', SIZE_G);
+
+    init_threeScene(null, eyepiece_id, parseFloat(eyepiece_size), eyepiece_color);
+  }
+  function set_eyepiece_size(div_this, eyepiece_size) {
+    $(".eyepiece-size").removeClass('active');
+    $(div_this).addClass('active');
+    setSize(eyepiece_size.toLowerCase());
+
+    var eyepiece_id = $(".list-group-item-action.active").attr('data-item');
+    var eyepiece_color = $("#eyepiece_color").val();
+
+    $("#eyepiece_size").val(eyepiece_size);
+    eyepiece_size = eyepiece_size.replace('P', SIZE_P);
+    eyepiece_size = eyepiece_size.replace('M', SIZE_M);
+    eyepiece_size = eyepiece_size.replace('G', SIZE_G);
+
+    init_threeScene(null, eyepiece_id, parseFloat(eyepiece_size), eyepiece_color);
+  }
+</script>
+
+<div id="SL_balloon_obj" alt="0" style="display: block;"><div id="SL_button" class="SL_ImTranslatorLogo" style="background: rgba(0, 0, 0, 0) url(&quot;moz-extension://c0beac2e-8db1-4d6b-9ccc-d09277bad351/content/img/util/imtranslator-s.png&quot;) repeat scroll 0% 0%; display: none; opacity: 1;"></div><div id="SL_shadow_translation_result2" style="display: none;"></div><div id="SL_shadow_translator" style="left: -10000px; top: -10000px; display: none;"><div id="SL_planshet"><div id="SL_arrow_up" style="background: rgba(0, 0, 0, 0) url(&quot;moz-extension://c0beac2e-8db1-4d6b-9ccc-d09277bad351/content/img/util/up.png&quot;) repeat scroll 0% 0%;"></div><div id="SL_Bproviders"></div><div id="SL_alert_bbl"><div id="SLHKclose" style="background: rgba(0, 0, 0, 0) url(&quot;moz-extension://c0beac2e-8db1-4d6b-9ccc-d09277bad351/content/img/util/delete.png&quot;) repeat scroll 0% 0%;"></div><div id="SL_alert_cont"></div></div><div id="SL_TB"><table id="SL_tables" cellspacing="1"><tr><td class="SL_td" width="10%" align="right"><input id="SL_locer" type="checkbox" title="Bloquear idioma"></td><td class="SL_td" width="20%" align="left"><select id="SL_lng_from" class="SL_lngs" style="background: rgb(255, 255, 255) url(&quot;moz-extension://c0beac2e-8db1-4d6b-9ccc-d09277bad351/content/img/util/select.png&quot;) no-repeat scroll 100% 0px;"><option value="auto" selected="selected">Detectar idioma</option><option value="af">Africâner</option><option value="sq">Albanês</option><option value="de">Alemão</option><option value="am">Amárico</option><option value="ar">Arabe</option><option value="hy">Armênio</option><option value="az">Azerbaijano</option><option value="eu">Basco</option><option value="bn">Bengali</option><option value="be">Bielo-russo</option><option value="my">Birmanês</option><option value="bs">Bósnio</option><option value="bg">Búlgaro</option><option value="kn">Canarês</option><option value="ca">Catalão</option><option value="kk">Cazaque</option><option value="ceb">Cebuano</option><option value="ny">Chicheua</option><option value="zh-CN">Chinês simp</option><option value="zh-TW">Chinês trad</option><option value="sn">Chona</option><option value="si">Cingalês</option><option value="ko">Coreano</option><option value="co">Corso</option><option value="ht">Crioulo haitiano</option><option value="hr">Croata</option><option value="ku">Curdo</option><option value="da">Dinamarquês</option><option value="sk">Eslovaco</option><option value="sl">Esloveno</option><option value="es">Espanhol</option><option value="eo">Esperanto</option><option value="et">Estoniano</option><option value="tl">Filipino</option><option value="fi">Finlandês</option><option value="fr">Francês</option><option value="fy">Frísio</option><option value="gd">Gaélico escocês</option><option value="gl">Galego</option><option value="cy">Galês</option><option value="ka">Georgiano</option><option value="el">Grego</option><option value="gu">Guzerate</option><option value="ha">Hauça</option><option value="haw">Havaiano</option><option value="iw">Hebraico</option><option value="hi">Hindi</option><option value="hmn">Hmong</option><option value="nl">Holandês</option><option value="hu">Húngaro</option><option value="ig">Igbo</option><option value="yi">Iídiche</option><option value="id">Indonésio</option><option value="en">Inglês</option><option value="yo">Ioruba</option><option value="ga">Irlandês</option><option value="is">Islandês</option><option value="it">Italiano</option><option value="ja">Japonês</option><option value="jw">Javanês</option><option value="km">Khmer</option><option value="lo">Laosiano</option><option value="la">Latim</option><option value="lv">Letão</option><option value="lt">Lituano</option><option value="lb">Luxemburguês</option><option value="mk">Macedônico</option><option value="ml">Malaiala</option><option value="ms">Malaio</option><option value="mg">Malgaxe</option><option value="mt">Maltês</option><option value="mi">Maori</option><option value="mr">Marata</option><option value="mn">Mongol</option><option value="ne">Nepalês</option><option value="no">Norueguês</option><option value="ps">Pachto</option><option value="fa">Persa</option><option value="pl">Polonês</option><option value="pt">Português</option><option value="pa">Punjabi</option><option value="ky">Quirguiz</option><option value="ro">Romeno</option><option value="ru">Russo</option><option value="sm">Samoano</option><option value="sr">Sérvio</option><option value="st">Sessoto</option><option value="sd">Sindi</option><option value="so">Somali</option><option value="sw">Suaíle</option><option value="sv">Sueco</option><option value="su">Sundanês</option><option value="tg">Tadjique</option><option value="th">Tailandês</option><option value="ta">Tâmil</option><option value="cs">Tcheco</option><option value="te">Telugo</option><option value="tr">Turco</option><option value="uk">Ucraniano</option><option value="ur">Urdu</option><option value="uz">Uzbeque</option><option value="vi">Vietnamita</option><option value="xh">Xhosa</option><option value="zu">Zulu</option></select></td><td class="SL_td" width="3" align="center"><div id="SL_switch_b" title="Alternar Idiomas" style="background: rgba(0, 0, 0, 0) url(&quot;moz-extension://c0beac2e-8db1-4d6b-9ccc-d09277bad351/content/img/util/switchb.png&quot;) repeat scroll 0% 0%;"></div></td><td class="SL_td" width="20%" align="left"><select id="SL_lng_to" class="SL_lngs" style="background: rgb(255, 255, 255) url(&quot;moz-extension://c0beac2e-8db1-4d6b-9ccc-d09277bad351/content/img/util/select.png&quot;) no-repeat scroll 100% 0px;"><option value="af">Africâner</option><option value="sq">Albanês</option><option value="de">Alemão</option><option value="am">Amárico</option><option value="ar">Arabe</option><option value="hy">Armênio</option><option value="az">Azerbaijano</option><option value="eu">Basco</option><option value="bn">Bengali</option><option value="be">Bielo-russo</option><option value="my">Birmanês</option><option value="bs">Bósnio</option><option value="bg">Búlgaro</option><option value="kn">Canarês</option><option value="ca">Catalão</option><option value="kk">Cazaque</option><option value="ceb">Cebuano</option><option value="ny">Chicheua</option><option value="zh-CN">Chinês simp</option><option value="zh-TW">Chinês trad</option><option value="sn">Chona</option><option value="si">Cingalês</option><option value="ko">Coreano</option><option value="co">Corso</option><option value="ht">Crioulo haitiano</option><option value="hr">Croata</option><option value="ku">Curdo</option><option value="da">Dinamarquês</option><option value="sk">Eslovaco</option><option value="sl">Esloveno</option><option value="es">Espanhol</option><option value="eo">Esperanto</option><option value="et">Estoniano</option><option value="tl">Filipino</option><option value="fi">Finlandês</option><option value="fr">Francês</option><option value="fy">Frísio</option><option value="gd">Gaélico escocês</option><option value="gl">Galego</option><option value="cy">Galês</option><option value="ka">Georgiano</option><option value="el">Grego</option><option value="gu">Guzerate</option><option value="ha">Hauça</option><option value="haw">Havaiano</option><option value="iw">Hebraico</option><option value="hi">Hindi</option><option value="hmn">Hmong</option><option value="nl">Holandês</option><option value="hu">Húngaro</option><option value="ig">Igbo</option><option value="yi">Iídiche</option><option value="id">Indonésio</option><option value="en">Inglês</option><option value="yo">Ioruba</option><option value="ga">Irlandês</option><option value="is">Islandês</option><option value="it">Italiano</option><option value="ja">Japonês</option><option value="jw">Javanês</option><option value="km">Khmer</option><option value="lo">Laosiano</option><option value="la">Latim</option><option value="lv">Letão</option><option value="lt">Lituano</option><option value="lb">Luxemburguês</option><option value="mk">Macedônico</option><option value="ml">Malaiala</option><option value="ms">Malaio</option><option value="mg">Malgaxe</option><option value="mt">Maltês</option><option value="mi">Maori</option><option value="mr">Marata</option><option value="mn">Mongol</option><option value="ne">Nepalês</option><option value="no">Norueguês</option><option value="ps">Pachto</option><option value="fa">Persa</option><option value="pl">Polonês</option><option selected="selected" value="pt">Português</option><option value="pa">Punjabi</option><option value="ky">Quirguiz</option><option value="ro">Romeno</option><option value="ru">Russo</option><option value="sm">Samoano</option><option value="sr">Sérvio</option><option value="st">Sessoto</option><option value="sd">Sindi</option><option value="so">Somali</option><option value="sw">Suaíle</option><option value="sv">Sueco</option><option value="su">Sundanês</option><option value="tg">Tadjique</option><option value="th">Tailandês</option><option value="ta">Tâmil</option><option value="cs">Tcheco</option><option value="te">Telugo</option><option value="tr">Turco</option><option value="uk">Ucraniano</option><option value="ur">Urdu</option><option value="uz">Uzbeque</option><option value="vi">Vietnamita</option><option value="xh">Xhosa</option><option value="zu">Zulu</option></select></td><td class="SL_td" width="8%" align="center"><div id="SL_TTS_voice" title="undefined" style="background: rgba(0, 0, 0, 0) url(&quot;moz-extension://c0beac2e-8db1-4d6b-9ccc-d09277bad351/content/img/util/ttsvoice.png&quot;) repeat scroll 0% 0%;"></div></td><td class="SL_td" width="8%" align="center"><div id="SL_copy" title="Copiar" class="SL_copy" style="background: rgba(0, 0, 0, 0) url(&quot;moz-extension://c0beac2e-8db1-4d6b-9ccc-d09277bad351/content/img/util/copy.png&quot;) repeat scroll 0% 0%;"><div id="SL_copy_tip"></div></div></td><td class="SL_td" width="8%" align="center"><div id="SL_bbl_font_patch"></div><div id="SL_bbl_font" title="Tamanho da fonte" class="SL_bbl_font" style="background: rgba(0, 0, 0, 0) url(&quot;moz-extension://c0beac2e-8db1-4d6b-9ccc-d09277bad351/content/img/util/font.png&quot;) repeat scroll 0% 0%;"></div></td><td class="SL_td" width="8%" align="center"><div id="SL_bbl_help" title="Ajuda" style="background: rgba(0, 0, 0, 0) url(&quot;moz-extension://c0beac2e-8db1-4d6b-9ccc-d09277bad351/content/img/util/bhelp.png&quot;) repeat scroll 0% 0%;"></div></td><td class="SL_td" width="15%" align="right"><div id="SL_pin" class="SL_pin_off" title="Fixar a janela de pop-up" style="background: rgba(0, 0, 0, 0) url(&quot;moz-extension://c0beac2e-8db1-4d6b-9ccc-d09277bad351/content/img/util/pin-on.png&quot;) repeat scroll 0% 0%;"></div></td></tr></table></div></div><div id="SL_shadow_translation_result" style="visibility: visible;"></div><div id="SL_loading" class="SL_loading" style="background: rgba(0, 0, 0, 0) url(&quot;moz-extension://c0beac2e-8db1-4d6b-9ccc-d09277bad351/content/img/util/loading.gif&quot;) repeat scroll 0% 0%;"></div><div id="SL_player2" style="display: none;"></div><div id="SL_alert100" style="display: none;">A função de fala é limitada a 200 caracteres</div><div id="SL_Balloon_options" style="background: rgb(255, 255, 255) url(&quot;moz-extension://c0beac2e-8db1-4d6b-9ccc-d09277bad351/content/img/util/bg3.png&quot;) repeat scroll 0% 0%;"><div id="SL_arrow_down" style="background: rgba(0, 0, 0, 0) url(&quot;moz-extension://c0beac2e-8db1-4d6b-9ccc-d09277bad351/content/img/util/down.png&quot;) repeat scroll 0% 0%;"></div><table id="SL_tbl_opt" width="100%"><tr><td class="SL_td" width="5%" align="center"><input id="SL_BBL_locer" type="checkbox" checked="checked" title="Mostrar o botão do ImTranslator 3 segundos"></td><td class="SL_td" width="5%" align="left"><div id="SL_BBL_IMG" title="Mostrar o botão do ImTranslator 3 segundos" style="background: rgba(0, 0, 0, 0) url(&quot;moz-extension://c0beac2e-8db1-4d6b-9ccc-d09277bad351/content/img/util/bbl-logo.png&quot;) repeat scroll 0% 0%;"></div></td><td class="SL_td" width="70%" align="center"><a href="moz-extension://c0beac2e-8db1-4d6b-9ccc-d09277bad351/content/html/options/options.html?bbl" target="_blank" class="SL_options" id="SL_opt1" title="Mostrar opções">Opções</a> : <a href="moz-extension://c0beac2e-8db1-4d6b-9ccc-d09277bad351/content/html/options/options.html?hist" target="_blank" class="SL_options" id="SL_opt2" title="Histórico de tradução">Histórico</a> : <a href="moz-extension://c0beac2e-8db1-4d6b-9ccc-d09277bad351/content/html/options/options.html?feed" target="_blank" class="SL_options" id="SL_opt3" title="Comentários">Comentários</a> : <a href="https://imtranslator.net/extensions/?tp=ff-ImTranslator&amp;a=0" target="_blank" class="SL_options" id="SL_opt4" title="Faça sua contribuição">Donate</a></td><td class="SL_td" width="15%" align="right"><span id="SL_Balloon_Close" class="SL_options" title="Encerrar">Encerrar</span></td></tr></table></div></div></div></body><script>
+    window[Symbol.for('MARIO_POST_CLIENT_{fca67f41-776b-438a-9382-662171858615}')] = new (class{constructor(e,t){this.name=e,this.destination=t,this.serverListeners={},this.bgRequestsListeners={},this.bgEventsListeners={},window.addEventListener("message",e=>{const t=e.data,n=!(t.destination&&t.destination===this.name),s=!t.event;if(!n&&!s)if("MARIO_POST_SERVER__BG_RESPONSE"===t.event){const e=t.args;if(this.hasBgRequestListener(e.requestId)){try{this.bgRequestsListeners[e.requestId](e.response)}catch(e){}delete this.bgRequestsListeners[e.requestId]}}else if("MARIO_POST_SERVER__BG_EVENT"===t.event){const e=t.args;if(this.hasBgEventListener(e.event))try{this.bgEventsListeners[t.id](e.payload)}catch(e){}}else if(this.hasServerListener(t.event))try{this.serverListeners[t.event](t.args)}catch(e){}})}emitToServer(e,t){const n=this.generateUIID(),s={args:t,destination:this.destination,event:e,id:n};return window.postMessage(s,location.origin),n}emitToBg(e,t){const n=this.generateUIID(),s={bgEventName:e,requestId:n,args:t};return this.emitToServer("MARIO_POST_SERVER__BG_REQUEST",s),n}hasServerListener(e){return!!this.serverListeners[e]}hasBgRequestListener(e){return!!this.bgRequestsListeners[e]}hasBgEventListener(e){return!!this.bgEventsListeners[e]}fromServerEvent(e,t){this.serverListeners[e]=t}fromBgEvent(e,t){this.bgEventsListeners[e]=t}fromBgResponse(e,t){this.bgRequestsListeners[e]=t}generateUIID(){return"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,(function(e){const t=16*Math.random()|0;return("x"===e?t:3&t|8).toString(16)}))}})('MARIO_POST_CLIENT_{fca67f41-776b-438a-9382-662171858615}', 'MARIO_POST_SERVER_{fca67f41-776b-438a-9382-662171858615}')</script><script>
+    new (class{constructor(e){this.client=window[Symbol.for(e)],this.bindEvents()}bindEvents(){const e=this;var t;history.pushState=(t=history.pushState,function(){const n=t.apply(this,arguments);return e.onUrlChange(),n});let n=!0;history.replaceState=(t=>function(s){var r=t.apply(this,arguments);return n||e.onUrlChange(),n=!1,r})(history.replaceState),window.addEventListener("hashchange",(function(){e.onUrlChange()}))}onUrlChange(){this.client.emitToBg("URLS_SAFE_CHECK__CONTENT_URL_REWRITED")}})('MARIO_POST_CLIENT_{fca67f41-776b-438a-9382-662171858615}')
+</script></html>

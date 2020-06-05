@@ -69,6 +69,16 @@ header h2 {
 	min-width: 80px;
 }
 
+.logo {
+	max-width: 50px;
+	margin-right: 10px;
+}
+
+span {
+	margin-top: 5px;
+	margin-bottom: 20px;
+	display: block;
+}
 @media screen and (max-width: 479px) {
 	#wrap {
 		margin-top: 20px;
